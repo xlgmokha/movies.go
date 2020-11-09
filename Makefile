@@ -6,3 +6,9 @@ unit:
 
 integration:
 	go test ./test/integration/...
+
+lint:
+	golint ./...
+
+fmt:
+	gofmt -w -e ./

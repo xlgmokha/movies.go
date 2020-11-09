@@ -6,10 +6,10 @@ import (
 )
 
 func TestMovie(t *testing.T) {
-  pixar := domain.Studio{ Name: "Pixar" }
+  pixar := domain.Studio{Name: "Pixar"}
   movie := domain.Movie{
-    Title: "A Bugs Life",
-    Year: 1998,
+    Title:  "A Bugs Life",
+    Year:   1998,
     Studio: pixar,
   }
 
