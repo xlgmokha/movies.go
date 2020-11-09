@@ -1,4 +1,4 @@
-test: unit
+test: fmt unit
 
 unit:
 	go test ./test/unit/...
@@ -13,4 +13,4 @@ lint:
 	golint ./...
 
 fmt:
-	gofmt -w -e ./
+	gofmt -s -w -e ./
