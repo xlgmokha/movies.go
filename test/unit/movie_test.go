@@ -1,6 +1,7 @@
 package testing
 
 import (
+  "github.com/stretchr/testify/assert"
   "movies/domain"
   "testing"
 )
@@ -14,14 +15,14 @@ func TestMovie(t *testing.T) {
   }
 
   t.Run("Title", func(t *testing.T) {
-    if movie.Title != "A Bugs Life" { t.Fatal(movie.Title) }
+    assert.Equal(t, "A Bugs Life", movie.Title)
   })
 
   t.Run("Year", func(t *testing.T) {
-    if movie.Year != 1998 { t.Fatal(movie.Year) }
+    assert.Equal(t, 1998, movie.Year)
   })
 
   t.Run("Studio", func(t *testing.T) {
-    if movie.Studio.Name != "Pixar" { t.Fatal(movie.Studio.Name) }
+    assert.Equal(t, "Pixar", movie.Studio.Name)
   })
 }

@@ -1,10 +1,11 @@
 package testing
 
-import "testing"
+import "github.com/stretchr/testify/assert"
 import "movies/domain"
+import "testing"
 
 func TestMovieLibrary(t *testing.T) {
-  library := domain.MovieLibrary{}
+  subject := domain.MovieLibrary{}
 
   pixar := domain.Studio{Name: "Pixar"}
   disney := domain.Studio{Name: "Disney"}
@@ -24,19 +25,19 @@ func TestMovieLibrary(t *testing.T) {
   pinocchio := domain.Movie{Title: "Pinocchio", Studio: disney, Year: 1940}
 
   t.Run("Add", func(t *testing.T) {
-    library.Add(shawshank_redemption)
-    library.Add(chasing_amy)
-    library.Add(man_on_fire)
-    library.Add(toy_story)
-    library.Add(up)
-    library.Add(cars)
-    library.Add(monsters_inc)
-    library.Add(fantasia)
-    library.Add(dumbo)
-    library.Add(pinocchio)
+    subject.Add(shawshank_redemption)
+    subject.Add(chasing_amy)
+    subject.Add(man_on_fire)
+    subject.Add(toy_story)
+    subject.Add(up)
+    subject.Add(cars)
+    subject.Add(monsters_inc)
+    subject.Add(fantasia)
+    subject.Add(dumbo)
+    subject.Add(pinocchio)
 
     t.Run("Length", func(t *testing.T) {
-      if library.Count() != 10 { t.Fatal(library.Count()) }
+      assert.Equal(t, 10, subject.Count())
     })
   })
 }
