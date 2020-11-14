@@ -43,6 +43,7 @@ func TestMovieLibrary(t *testing.T) {
 
 			t.Run("does not allow duplicates", func(t *testing.T) {
 				subject.Add(man_on_fire)
+
 				assert.Equal(t, 10, subject.Count())
 			})
 		})

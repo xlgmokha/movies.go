@@ -16,7 +16,9 @@ func (self *MovieLibrary) Find(fn Predicate) *Movie {
 }
 
 func (self *MovieLibrary) Add(movie Movie) {
-	found := self.Find(func(x Movie) bool { return x.Title == movie.Title })
+	found := self.Find(func(x Movie) bool {
+		return x.Equals(movie)
+	})
 
 	if found != nil {
 		return
