@@ -25,19 +25,26 @@ func TestMovieLibrary(t *testing.T) {
 	pinocchio := domain.Movie{Title: "Pinocchio", Studio: disney, Year: 1940}
 
 	t.Run("Add", func(t *testing.T) {
-		subject.Add(shawshank_redemption)
-		subject.Add(chasing_amy)
-		subject.Add(man_on_fire)
-		subject.Add(toy_story)
-		subject.Add(up)
-		subject.Add(cars)
-		subject.Add(monsters_inc)
-		subject.Add(fantasia)
-		subject.Add(dumbo)
-		subject.Add(pinocchio)
+		t.Run("when adding a movie to the library", func(t *testing.T) {
+			subject.Add(shawshank_redemption)
+			subject.Add(chasing_amy)
+			subject.Add(man_on_fire)
+			subject.Add(toy_story)
+			subject.Add(up)
+			subject.Add(cars)
+			subject.Add(monsters_inc)
+			subject.Add(fantasia)
+			subject.Add(dumbo)
+			subject.Add(pinocchio)
 
-		t.Run("Length", func(t *testing.T) {
-			assert.Equal(t, 10, subject.Count())
+			t.Run("increases the total number of movies in the library", func(t *testing.T) {
+				assert.Equal(t, 10, subject.Count())
+			})
+
+			t.Run("does not allow duplicates", func(t *testing.T) {
+				subject.Add(man_on_fire)
+				assert.Equal(t, 10, subject.Count())
+			})
 		})
 	})
 }
