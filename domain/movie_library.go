@@ -4,6 +4,10 @@ type MovieLibrary struct {
 	Movies []Movie
 }
 
+//type Specification interface {
+//IsSatisfiedBy(m Movie) bool
+//}
+
 func (self *MovieLibrary) Find(fn Predicate) *Movie {
 	for i := range self.Movies {
 		movie := self.Movies[i]
@@ -29,16 +33,22 @@ func (self *MovieLibrary) FindAll(fn Predicate) []Movie {
 	return items
 }
 
+func NewSpecification(p Predicate) Predicate {
+	return p
+}
+
+func MovieProducedBy(studio string) Predicate {
+	return func(m Movie) bool {
+		return m.Studio.Name == studio
+	}
+}
+
 func (self *MovieLibrary) FindAllMoviesByPixar() []Movie {
-	return self.FindAll(func(x Movie) bool {
-		return x.Studio.Name == "Pixar"
-	})
+	return self.FindAll(MovieProducedBy("Pixar"))
 }
 
 func (self *MovieLibrary) FindAllMoviesByPixarOrDisney() []Movie {
-	return self.FindAll(func(x Movie) bool {
-		return x.Studio.Name == "Pixar" || x.Studio.Name == "Disney"
-	})
+	return self.FindAll(MovieProducedBy("Pixar").Or(MovieProducedBy("Disney")))
 }
 
 func (self *MovieLibrary) FindAllMoviesNotByPixar() []Movie {
