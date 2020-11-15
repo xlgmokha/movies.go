@@ -48,4 +48,24 @@ func TestMovieLibrary(t *testing.T) {
 			})
 		})
 	})
+
+	t.Run("Find", func(t *testing.T) {
+		subject.Add(shawshank_redemption)
+		subject.Add(chasing_amy)
+		subject.Add(man_on_fire)
+		subject.Add(toy_story)
+		subject.Add(up)
+		subject.Add(cars)
+		subject.Add(monsters_inc)
+		subject.Add(fantasia)
+		subject.Add(dumbo)
+		subject.Add(pinocchio)
+
+		t.Run("returns all Pixar movies", func(t *testing.T) {
+			movies := subject.FindAllMoviesByPixar()
+			expected := [...]domain.Movie{toy_story, cars, up, monsters_inc}
+
+			assert.ElementsMatch(t, expected, movies)
+		})
+	})
 }
