@@ -48,6 +48,11 @@ func MovieReleasedAfter(year int) Predicate {
 		return m.Year > year
 	}
 }
+func MovieReleasedBefore(year int) Predicate {
+	return func(m Movie) bool {
+		return m.Year < year
+	}
+}
 
 func (self *MovieLibrary) FindAllMoviesByPixar() []Movie {
 	return self.FindAll(MovieProducedBy("Pixar"))
@@ -66,9 +71,7 @@ func (self *MovieLibrary) FindAllMoviesPublishedAfter2004() []Movie {
 }
 
 func (self *MovieLibrary) FindAllMoviesPublishedBetween1982And2003() []Movie {
-	return self.FindAll(func(x Movie) bool {
-		return x.Year > 1982 && x.Year < 2003
-	})
+	return self.FindAll(MovieReleasedAfter(1982).And(MovieReleasedBefore(2003)))
 }
 
 func (self *MovieLibrary) Add(movie Movie) {

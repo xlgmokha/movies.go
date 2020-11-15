@@ -8,6 +8,12 @@ func (self Predicate) Or(other Predicate) Predicate {
 	}
 }
 
+func (self Predicate) And(other Predicate) Predicate {
+	return func(m Movie) bool {
+		return self(m) && other(m)
+	}
+}
+
 func (self Predicate) Not() Predicate {
 	return func(m Movie) bool {
 		return !self(m)
