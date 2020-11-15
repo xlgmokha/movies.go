@@ -74,5 +74,19 @@ func TestMovieLibrary(t *testing.T) {
 
 			assert.ElementsMatch(t, expected, movies)
 		})
+
+		t.Run("returns all movies not published by Pixar", func(t *testing.T) {
+			movies := subject.FindAllMoviesNotByPixar()
+			expected := [...]domain.Movie{
+				chasing_amy,
+				dumbo,
+				fantasia,
+				man_on_fire,
+				pinocchio,
+				shawshank_redemption,
+			}
+
+			assert.ElementsMatch(t, expected, movies)
+		})
 	})
 }

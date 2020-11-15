@@ -41,6 +41,12 @@ func (self *MovieLibrary) FindAllMoviesByPixarOrDisney() []Movie {
 	})
 }
 
+func (self *MovieLibrary) FindAllMoviesNotByPixar() []Movie {
+	return self.FindAll(func(x Movie) bool {
+		return x.Studio.Name != "Pixar"
+	})
+}
+
 func (self *MovieLibrary) Add(movie Movie) {
 	found := self.Find(func(x Movie) bool {
 		return x.Equals(movie)
