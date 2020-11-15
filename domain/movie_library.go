@@ -52,9 +52,7 @@ func (self *MovieLibrary) FindAllMoviesByPixarOrDisney() []Movie {
 }
 
 func (self *MovieLibrary) FindAllMoviesNotByPixar() []Movie {
-	return self.FindAll(func(x Movie) bool {
-		return x.Studio.Name != "Pixar"
-	})
+	return self.FindAll(MovieProducedBy("Pixar").Not())
 }
 
 func (self *MovieLibrary) FindAllMoviesPublishedAfter2004() []Movie {
