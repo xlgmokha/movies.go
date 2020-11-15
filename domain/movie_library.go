@@ -43,6 +43,12 @@ func MovieProducedBy(studio string) Predicate {
 	}
 }
 
+func MovieReleasedAfter(year int) Predicate {
+	return func(m Movie) bool {
+		return m.Year > year
+	}
+}
+
 func (self *MovieLibrary) FindAllMoviesByPixar() []Movie {
 	return self.FindAll(MovieProducedBy("Pixar"))
 }
@@ -56,9 +62,7 @@ func (self *MovieLibrary) FindAllMoviesNotByPixar() []Movie {
 }
 
 func (self *MovieLibrary) FindAllMoviesPublishedAfter2004() []Movie {
-	return self.FindAll(func(x Movie) bool {
-		return x.Year > 2004
-	})
+	return self.FindAll(MovieReleasedAfter(2004))
 }
 
 func (self *MovieLibrary) FindAllMoviesPublishedBetween1982And2003() []Movie {
