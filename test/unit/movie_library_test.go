@@ -88,5 +88,12 @@ func TestMovieLibrary(t *testing.T) {
 
 			assert.ElementsMatch(t, expected, movies)
 		})
+
+		t.Run("returns all movies released after 2004", func(t *testing.T) {
+			movies := subject.FindAllMoviesPublishedAfter2004()
+			expected := [...]domain.Movie{cars, up}
+
+			assert.ElementsMatch(t, expected, movies)
+		})
 	})
 }

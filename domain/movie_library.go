@@ -47,6 +47,12 @@ func (self *MovieLibrary) FindAllMoviesNotByPixar() []Movie {
 	})
 }
 
+func (self *MovieLibrary) FindAllMoviesPublishedAfter2004() []Movie {
+	return self.FindAll(func(x Movie) bool {
+		return x.Year > 2004
+	})
+}
+
 func (self *MovieLibrary) Add(movie Movie) {
 	found := self.Find(func(x Movie) bool {
 		return x.Equals(movie)
