@@ -53,6 +53,12 @@ func (self *MovieLibrary) FindAllMoviesPublishedAfter2004() []Movie {
 	})
 }
 
+func (self *MovieLibrary) FindAllMoviesPublishedBetween1982And2003() []Movie {
+	return self.FindAll(func(x Movie) bool {
+		return x.Year > 1982 && x.Year < 2003
+	})
+}
+
 func (self *MovieLibrary) Add(movie Movie) {
 	found := self.Find(func(x Movie) bool {
 		return x.Equals(movie)

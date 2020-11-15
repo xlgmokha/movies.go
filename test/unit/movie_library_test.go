@@ -95,5 +95,12 @@ func TestMovieLibrary(t *testing.T) {
 
 			assert.ElementsMatch(t, expected, movies)
 		})
+
+		t.Run("returns all movies released between 1982 and 2003 - inclusive", func(t *testing.T) {
+			movies := subject.FindAllMoviesPublishedBetween1982And2003()
+			expected := [...]domain.Movie{shawshank_redemption, chasing_amy, toy_story, monsters_inc}
+
+			assert.ElementsMatch(t, expected, movies)
+		})
 	})
 }
