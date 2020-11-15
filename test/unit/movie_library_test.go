@@ -67,5 +67,12 @@ func TestMovieLibrary(t *testing.T) {
 
 			assert.ElementsMatch(t, expected, movies)
 		})
+
+		t.Run("returns all movies published by Pixar or Disney", func(t *testing.T) {
+			movies := subject.FindAllMoviesByPixarOrDisney()
+			expected := [...]domain.Movie{toy_story, cars, up, monsters_inc, fantasia, dumbo, pinocchio}
+
+			assert.ElementsMatch(t, expected, movies)
+		})
 	})
 }
